@@ -1,0 +1,30 @@
+apiVersion: kaptain.org/1.7
+kind: docker-build-dockerfile
+metadata:
+  description: "Common docker build settings for image-environment-deploy-* images"
+
+spec:
+  main:
+    docker:
+      platform: linux/amd64,linux/arm64
+      dockerfile:
+        subPathLinuxAmd64: src/docker
+        subPathLinuxArm64: src/docker
+    hooks:
+      postDockerTests: kaptain-out/test-docker-image.bash
+  global:
+    release:
+      additionalBranches: "main-1.32,main-1.33,main-1.34,main-1.35,main-1.36,main-1.37,main-1.38,main-1.39,main-1.40"
+      versioning:
+        maxParts: '6'
+        strategy: compound-file-pattern-match
+        patternType: dockerfile-env-kubectl
+        source:
+          pattern: '^FROM .*kaptain-deploy-scripts:([0-9]+\.[0-9]+\.[0-9]+)( .*)?$'
+          prefixParts: '3'
+        sourceTwo:
+          pattern: '^FROM .*image-environment-base-.*:([0-9]+\.[0-9]+\.[0-9]+)$'
+
+layer-payload:
+  - source: /test-docker-image.bash
+    destination: kaptain-out/test-docker-image.bash
