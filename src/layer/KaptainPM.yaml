@@ -27,4 +27,4 @@ spec:
 
 layer-payload:
   - source: /test-docker-image.bash
-    destination: kaptain-out/test-docker-image.bash
+    destination: kaptain-out
