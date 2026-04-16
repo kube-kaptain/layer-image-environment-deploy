@@ -1,8 +1,8 @@
-apiVersion: kaptain.org/1.7
+apiVersion: kaptain.org/1.11
 kind: layer-and-layerset-build
 metadata:
   description: "Common docker build settings for image-environment-deploy images"
 
 spec:
   layers:
-    - layerset-and-layer-build:[1.3,2.0)
+    - layerset-and-layer-build:[1.4,2.0)
