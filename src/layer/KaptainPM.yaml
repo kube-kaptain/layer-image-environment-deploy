@@ -1,4 +1,4 @@
-apiVersion: kaptain.org/1.11
+apiVersion: kaptain.org/1.15
 kind: docker-build-dockerfile
 metadata:
   description: "Common docker build settings for image-environment-deploy-* images"
